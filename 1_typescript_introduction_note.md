@@ -1,8 +1,10 @@
-# Week 1 - Typescript
-## Day 1 - Friday, 2nd May 2025 - Today's Topic
+# Week 1 - Typescript - Day 1 - Friday, 2nd May 2025
+## Today's Topic
 ### Understanding Typescript
 - Typescript is statically typed superset of JavaScript that compiles to plain JavaScript.
 - While, JavaScript is dynamically typed, Typescript allows you to define types for variables, function parameters, and return values.
+
+### Exploring typescript 
 
 #### Why Typescript?
 - TS was introduced to make js code predictable (dynamic typed) and to enhance DX for larger projects;
@@ -77,4 +79,3 @@ add(1, 2); // returns 3
   - Because, sometimes some people use old browsers that don't support ES6 or ES7, so we can compile TS code to ES5 and run it on old browsers.
   - And, also, we do not compile TS code but we **transpile it to JS code.**
 
-### Exploring typescript 
