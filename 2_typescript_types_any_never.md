@@ -95,6 +95,7 @@ b.ok = "ok"; // gives error, as unknown type is not assignable to any type.
 // it is advisable to use unknown type, as it is more strict than any type.
 
 ```
+### Day 3 - Monday, 5th May 2025
 - ``never`` **type**: It is used wjen we are sure that something is never going to occur. (never going to execute, or never going to return a value). We can use it in functions that never return a value, or in functions that always throw an error. It is also used in exhaustive checks in switch statements or if-else statements.
 ```typescript
 // any, unknown, never
@@ -134,3 +135,4 @@ function keepProcessing(): never {
     }
 }
 ```
+
