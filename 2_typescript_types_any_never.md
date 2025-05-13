@@ -125,14 +125,63 @@ if (typeof b === "number") {
 - ``never`` type examples:
 ```typescript
 // never type example
+
+// never type can be used in functions that always throw an error
 function throwError(errorMsg: string): never {
     throw new Error(errorMsg);
 }
 
+// or, in functions that never return a value
 function keepProcessing(): never {
     while (true) {
         console.log("I always does something and never ends.");
     }
 }
 ```
+### Day 4 - Tuesday, 13th May 2025
+#### Type Assertions and ``as`` keyword
+- Sometimes, we will have information about the type of a value that TypeScript can't know about.
+- For example, if we are using ``document.getElementById()``, TypeScript only knows that this will return some kind of ``HTMLElement``, but we might know that our page will always have an ``HTMLCanvasElement``  with a given ID.
+- Here, in this situation, we can use a **type assertions** to specify a more specific type using ``as`` keyword.
+```typescript
+const myCanvas = document.getElementById("mycanvas") as HTMLCanvasElement;
+```
+- Type assertions are removed by the compiler and won't affect the runtime behaviour of the code.
+- We can also use the angle-bracket syntax (except if the code is in a ``.tsx`` file), which is equivalent.
+```typescript
+const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas");
+```
+- TypeScript only allows **type assertions** which convert to a *more specific or less specific version of a type.* This rule prevents "impossible" coercions like:
+```typescript
+// take a look at this example
+const x = "hello" as number;
+// this is not allowed, as conversion of type 'string' to type 'number' is not possible.
 
+// typescript sees this as "Conversion of type 'string' to type 'number' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first and then assert it to 'number'."
+
+```
+- Sometimes, this rule can be too conservative and will disallow more complex coercions that might be valid. If this happens, we can use two assertions, first to ``any`` (or ``unknown``), then to the desired type:
+```typescript
+const a = expr as any as T;
+```
+
+#### Functions parameter type, and return type
+- We can also give types to function parameters and return types.
+- When, we give type to functio parameters, it will check the type of the arguments passed to the function.
+- When we give type to function return type, it will check the type of the value returned by the function.
+- If we do not give type to function return type, it will infer the return type automatically and will not check the type of the value returned by the function.
+
+```typescript
+// here,we are giving type to function parameters and return type
+function uploadImage(imagePath:string, imageType:string):boolean{
+    // 
+    return true; // will not result in error
+    // return 1; will return error
+}
+
+// here, we did not specified return type but, we returned a number, and typescript will infer the return type as number
+function uploadImage2(imagePath:string, imageType:string) {
+    // since, now we did not declared any return type for the function
+    return 1; // typescript will infer number as return type automatically
+}
+```
