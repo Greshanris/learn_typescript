@@ -185,3 +185,36 @@ function uploadImage2(imagePath:string, imageType:string) {
     return 1; // typescript will infer number as return type automatically
 }
 ```
+- We can also make the function parameters optional by using ``?`` after the parameter name.
+```typescript
+function uploadImage(imagePath:string, imageType?:string){
+    return 1;
+}
+
+uploadImage("uploads/img/a.jpeg", "JPEG");
+uploadImage("uploads/img/a.jpeg"); // this is also valid, as imageType is optional.
+```
+- We can also use ``union`` type to specify multiple types for a parameter.
+```typescript
+function uploadImage(imagePath:string[], imageType?:"JPEG" | "PNG" | "GIF"){
+    return 1;
+}
+// ? in imageType means, it is optional, and typescript will see it as JPEG" | "PNG" | "GIF" | undefined
+
+uploadImage(["uploads/img/a.jpeg"], "JPEG);
+```
+- By default, all functions are ``void`` type, which means they do not return anything.
+``` typescript
+function add() {
+    // default return type is void
+    // console.log("");
+    // db.query;
+    // by default it is return type is void
+    // but do return: undefined
+    
+}
+
+console.log(add()); // undefined
+```
+
+### Day 5 - Wednesday, 14th May 2025
