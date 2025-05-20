@@ -1,6 +1,6 @@
-# Week 1 - Typescript - Day 2 - Saturday, 3rd May 2025 
-## Exploring TypeScript Types, Operators, and keywords.
-### Types
+# 2 - Exploring TypeScript Types, Operators, and keywords. 
+### Typescript - Day 2 - Saturday, 3rd May 2025 
+#### Types
 - ``primitive types``: number, string, boolean, null, undefined
 - ``arrays``: number[], string[], boolean[]
 - any type, unknown type, never type

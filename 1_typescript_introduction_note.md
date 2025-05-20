@@ -1,6 +1,7 @@
-# Week 1 - Typescript - Day 1 - Friday, 2nd May 2025
+# 1 - Introduction to Typescript
 ## Today's Topic
-### Understanding Typescript
+### Day 1 - Friday, 2nd May 2025
+#### Understanding Typescript
 - Typescript is statically typed superset of JavaScript that compiles to plain JavaScript.
 - While, JavaScript is dynamically typed, Typescript allows you to define types for variables, function parameters, and return values.
 
