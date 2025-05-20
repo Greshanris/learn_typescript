@@ -218,3 +218,186 @@ console.log(add()); // undefined
 ```
 
 ### Day 5 - Wednesday, 14th May 2025
+#### Custom Types
+- we can also create custom types using previous types such as ``boolean``, ``string``, ``number``, ``number[]``, and their ``union`` types.
+- Previously, we did created a custom type in ``function doesExist()`` function, which is a union of type of ``true``, ``1``, and ``0``.
+
+```typescript
+let doesExist: "1" | true | "0"; // it is our own custom type
+```
+- we can also create custom type using ``type`` keyword and storing it in a different variable.
+```typescript
+type HamroType = "1" | true | 1;
+let doesExist: HamroType; // it is our own custom type
+```
+
+- While writing custom types in a variable, we have to use ``pascal case`` for the variable name, which means the first letter of each word should be capitalized.
+```typescript
+// Pascal Case : AccountOfStudent
+type Gender : "MALE" | "FEMALE" | "OTHER";
+let citizenGender : Gender;
+citizenGender = "MALE"; // THIS IS VALID
+citizenGender = "FEMALE"; // THIS IS ALSO VALID
+citizenGender = "OTHER"; // THIS IS ALSO VALID
+citizenGender = "male"; // THIS IS INVALID
+```
+
+### Day 6 - Monday, 19th May 2025
+#### Object Type (Custom Type)
+- we can also make object type.
+- for instance, when we need data in object format, we can use object type for it.
+```typescript
+// Object type
+type Area = {
+    Length: number,
+    Breadth: number,
+    Height?: number // optional property // number | undefined
+}
+
+function calculateArea(area: Area) {
+    return area.Length * area.Breadth;
+}
+
+console.log(calculateArea({
+    Length: 10, 
+    Breadth: 20
+})); // Output : 200
+
+console.log(calculateArea({
+    Length: "ten", 
+    Breadth: "twenty"
+})); // Type "String" is not assignable to type "number", and it will give error and output will be NaN.
+```
+- For scenario, where we need to find the format in typescript, like an IP address, or such format, we can do like this:
+```typescript
+type Area = {
+    length?: number,
+    breadth?: number,
+    dimension: `${number}x${number}`
+    // dimension: `${number}/${number}: ${number}`
+}
+
+function calculateArea(value: Area) {
+    return value.dimension;
+}
+
+calculateArea({
+    dimension: "10x20";
+    // dimension: "12/12: 13"
+})
+```
+
+```typescript
+// Object type
+
+type Developer = {
+    name: string,
+    age: number,
+    hobbies: string[],
+    isCertified: boolean,
+    description: ()=>string
+}
+
+const rishavChaudhary:Developer = {
+    name: "Rishav Chaudhary",
+    age: 23,
+    hobbies: ["Cooking", "Learning new things"],
+    isCertified: true,
+    description: function() {
+        return "This is the description";
+    }
+}
+```
+
+- If we want to add more features or properties to the custom type
+```typescript
+// Custom types
+
+type Animal = {
+    name: string
+}
+
+// intersection "&" that helps in inheriting another type + defined type as well
+type Bear = Animal & {
+    food: "FISH" | "MEAT" | "HONEY"
+}
+
+type PolarBear = Bear & {
+    name: "Polar Bear",
+    food: "FISH"
+}
+```
+
+- Now, we know of the pascal case in defining types, but sometimes, people also put ``T`` in front of the type name, which is also a convention.
+```typescript
+type TAnimal = {
+    name: string
+}
+```
+
+### Day 7 - Tuesday, 20th May 2025
+#### Interface
+- Interface is a way to define how an object should look like.
+- It is a way to define the structure of an object.
+- It is like a skeleton to a class, methods which is empty. It is outline on how we do.
+- We define interface using ``interface`` keyword, and for using it, we use ``extends`` keyword.
+- It is also in ``PascalCase`` where the first letter of each word is capitalized.
+```typescript
+// Interface 
+
+// we have learned interface, abstraction in OOP
+
+// Interface is like a skeleton to a class, methods which is empty. It is outline on how we do.
+
+// Interface is always in (PascalCase)
+interface Animal {
+    name:string;
+}
+
+interface Bear extends Animal {
+    food: "FISH" | "GRASS"
+}
+
+let PolarBear : Bear = {
+    name: "Polar Bear",
+    food: "FISH"
+}
+```
+- Difference between ``interface`` and ``type`` via intersections are:
+  - ``interface`` uses ``extends`` and ``interface`` keyword, while ``type`` uses ``&`` and ``type`` keyword.
+  - Another difference, is that, we can define multiple same name ``interface`` but we cannot define multiple same name ``type``.
+```typescript
+interface Window {
+    title: string;
+}
+
+interface Window {
+    ts: TypeScriptAPI;
+    // this is valid, a we can define multiple same name interface
+}
+/* what happens here is, the first interface is merged with the second interface, and the final interface will look like this:
+
+interface Window {
+    title: string;
+    ts: TypeScriptAPI;
+}
+*/
+let win: WindowD = {
+    title: "My Window",
+    ts: "def";
+}
+```
+- Sometimes, we see interface naming with ``I`` in front of the name, which is also a convention.
+```typescript
+interface IAnimal {
+    name: string;
+    age: number;
+    isMammal?: boolean;
+    isCarnivore?: boolean;
+    isHerbivore?: boolean;
+    isOmnivore?: boolean;
+    isEndangered?: boolean;
+    isExtinct?: boolean;
+}
+```
+
