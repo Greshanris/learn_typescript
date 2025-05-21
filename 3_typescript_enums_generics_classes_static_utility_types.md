@@ -261,3 +261,63 @@ console.log(todo);
 } 
 */
 ```
+
+##### Omit<Type, Keys>
+- The ``Omit`` constructs a type by picking all properties from ``Type`` and then removing ``keys``(string literal or union of string literals).
+- Simply put, it allows us to create a new type by excluding specific properties from an existing type.
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: number;
+}
+
+// now, if we do not need description, then we create a new type that is "TodoPreview", then
+// we can use ``Omit`` utility Type
+type TodoPreview = Omit<Todo, "description">;
+const todo: TodoPreview = {
+  title: "Learn TypeSript",
+  complted: false,
+  createdAt: 2025
+}
+
+console.log(todo);
+/*
+{
+  "title": "Learn TypeSript",
+  "complted": false,
+  "createdAt": 2025
+}
+*/
+```
+##### Partial<Type>
+- The ``Partial`` utility type constructs a type with all properties of ``Type`` set to optional. The utility will return a type that represents all subsets of a given type.
+- Simply put, it allows us to create a new type by making all properties of an existing type optional.
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+}
+
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return {...todo, ...fieldsToUpdate}
+}
+
+const todo1 = {
+  title: "Practice Healthy Habits",
+  description: "Pranayama, Yoga, Exercises"
+}
+
+const todo2 = updateTodo(todo1, {
+  description: "Brush Teeth"
+})
+
+console.log(todo2)
+/*
+{
+  "title": "Practice Healthy Habits",
+  "description": "Brush Teeth"
+}
+*/
+```
