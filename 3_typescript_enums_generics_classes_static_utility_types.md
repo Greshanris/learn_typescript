@@ -150,4 +150,52 @@ console.log(match1.getScore()); // 2
   - **Generic Functions**: Functions that can work with multiple types.
   - **Generic Class**: Classes that can work with multiple types.
 ![class_generics](pictures/7_21may2025.png)
+```typescript
+// Functional Generics
 
+// for number
+function swap(i1: number, i2: number) {
+  return [i2, i1];
+}
+
+// for string
+function swapString(i1: string, i2: string) {
+  return [i2, i1];
+}
+
+// now, using Functional Generics
+function swapGeneric<T>(a:T, b:T) {
+  return [b, a];
+}
+
+// using, Generic Function
+swapGeneric<string>("rishav", "greshan");
+swapGeneric<number>(23, 5);
+
+// now, if we need second parameter as number, first as any
+function swapGeneric2<T>(a:T, b:number) {
+  return [b, a];
+}
+
+swapGeneric2<string>("abcd", 345);
+
+// now, for T, we can also write Type
+function swapGeneric3<Type>(a:Type, b:string) {
+  return [b, a];
+}
+
+swapGeneric3<number>(234, "dfjf");
+```
+
+```typescript
+// Class Generics
+
+class Box<T>{
+
+  constructor(data:T) {
+    console.log("data", data);
+  }
+}
+
+const b = new Box<number>(5);
+```
