@@ -67,5 +67,87 @@ console.log(`Rishav's Salary: ${rishavSalary}`)
 console.log(`Greshan's Salary: ${greshanSalary}`)
 console.log(`manavSalary: ${manavSalary}`)
 ```
+- One thing to note is that when we store custom value in enums, the next value will be incremented by 1. Because of this, we do not have to assign a value to each enum constant.
+- But, if we want to assign a specific value other than numbers, like strings, then, we have to store strings in the other enum constant as well.
+- Second thing, is enums are generally exported from a module and imported in another module for use. For instance, 
+```typescript
+export enum LogType {
+  ERROR="ERRORS",
+  INFO="INFO",
+  WARNING="WARNING"
+}
+```
 
+### Day 8 - Wednesday, 21st May 2025
+#### Classes
+- Classes are a way to define a blueprint for creating objects in TypeScript. They can have properties and methods.
+- Properties are variables that belong to the class, and methods are functions that belong to the class.
+- Classes can also have constructors, which are special methods that are called when an object is created from the class.
+- Classes can also have access modifiers, which control the visibility of properties and methods.
+- There are three access modifiers in TypeScript:
+  - **public**: The property or method is accessible from anywhere. ``public`` is the default access modifier.
+  - **private**: The property or method is only accessible from within the class. ``private`` is keyword for making functions or properties private.
+  - **protected**: The property or method is only accessible from within the class and its subclasses. ``protected`` is keyword for making functions or properties protected.
+- There is also ``static`` keyword which is used to define static properties and methods or variables. Static properties and methods are not tied to a specific instance of the class, but rather to the class itself. This means that they can be accessed without creating an instance of the class.
+  - 
+```typescript
+class MatchScore {
+  // private fields or private function is done by using # in javascript as well as typescript
+  // but we can also use private keyword in typescript
+  private score: number;
+  // private function using # which is used in javascript
+  #getScore(): number { // we can use: private getScore() {} as well
+    return 100;
+  }
+
+  // if we want to make something public, we can use public keyword
+  public getScore(): number {
+    
+  }
+
+  // for defining a method, we do not use function keyword
+  setScore(score: number) {
+    // this is how we can access private fields
+    console.log(this.#getScore());
+  }
+}
+
+let match1 = new MatchScore();
+match1.getScore();
+```
+![classes_statics_illustration](pictures/4_21may2025.png)
+
+```typescript
+// static example
+class MatchScore {
+  static score = 1;
+
+  public getScore(): number {
+    return MatchScore.score;
+  } 
+
+  public incrementScore(): void {
+    MatchScore.score++;
+  }
+}
+
+const match1 = new MatchScore();
+console.log(match1.getScore()); // 1
+
+const match2 = new MatchScore();
+match2.incrementScore(); // score ko value badaidyo
+
+console.log(match1.getScore()); // 2
+```
+
+#### Generics
+- Generics are a way to create reusable components in TypeScript. 
+- They allow us to define a function or class that can work with multiple types without losing type safety.
+- Generics are defined using angle brackets ``<>``.
+![generic understanding](pictures/5_21may2025.png)
+![functional generics and class generics](pictures/6_21may2025.png)
+- There are two types of Generics:
+  - **Generic Functions**: Functions that can work with multiple types.
+  - **Generic Class**: Classes that can work with multiple types.
+![class_generics](pictures/7_21may2025.png)
 
