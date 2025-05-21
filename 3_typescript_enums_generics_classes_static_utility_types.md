@@ -199,3 +199,65 @@ class Box<T>{
 
 const b = new Box<number>(5);
 ```
+#### Utility Types {Objects ko lagi}
+- Utility types are built-in types in TypeScript that help us manipulate and transform types.
+- They are use to create new types based on existing ones.
+- There are several utility types in TypeScript, but we will cover the most commonly used ones:
+##### Record<Keys, Type>
+- The ``Record`` utility type constructs an object type whose property keys are ``keys`` and whose property values are ``Type``.
+- This utility can be used to map the properties of a type to another type.
+```typescript
+// To make a Record type, we use type Record<Keys, Type>
+// It is used to enforce a specific type for the keys and values of an object.
+let info: Record<string, string> = {
+  name: "Rishav",
+  location: "KTM"
+}
+
+info["4"] = "true";
+
+console.log(info) 
+/*
+{
+  "4": "true",
+  "name": "Rishav",
+  "location": "KTM"
+}
+*/
+```
+- We can enforce our own custom type for the keys and values of an object.
+```typescript
+type Roles = "admin" | "owner";
+
+let PeopleAndRoles: Record<Roles, string[]> = {
+  "admin": ["Greshan", "Manav", "Ellish"],
+  "owner": ["Rishav"]
+}
+```
+
+##### Pick<Type, Keys>
+- The ``Pick`` utility type constructs a type by picking the set of properties ``keys``(string litral or union of string literals) from ``Type``.
+- Simply put, it allows us to create a new type by selecting specific properties from an existing type.
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+// now, if we only need title and description, in another type we will create that is "TodoPreview", then
+// we can use ``Pick`` utility type
+type TodoPreview = Pick<Todo, "title" | "description">;
+
+const todo: TodoPreview = {
+  title: "Learn TypeScript",
+  description: "Learn TypeScript with Rishav"
+};
+
+console.log(todo);
+/*
+"title": "Learn TypeScript",
+  "description": "Learn TypeScript with Rishav"
+} 
+*/
+```
