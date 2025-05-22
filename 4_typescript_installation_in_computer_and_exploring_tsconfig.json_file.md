@@ -1,6 +1,6 @@
 # 4 - Typescript Installation in Computer and Exploring tsconfig.json file
-### Day 9 - Thursday, 22nd May 2025
-#### Typescript Installation in Computer using Package Manager
+## Day 9 - Thursday, 22nd May 2025
+### Typescript Installation in Computer using Package Manager
 - Using ``pnpm`` to install Typescript globally on your computer.
 - Open your terminal and run the following command:
 ```zsh
@@ -107,7 +107,7 @@ tsc index.ts --target es2015 --outDir dist
 ```
 - Now, we see the folder called ``dist`` created in our project directory. And, inside the folder, we can see ``index.js`` file.
 
-#### Exploring tsconfig.json file
+### Exploring tsconfig.json file
 - Now, repeteadly typing the command, setting flags, setting targets, setting outDir, is not a good practice. It is also time consuming. 
 - For that part is what ``tsconfig.json`` file is for.
 - It is a configuration file for typescript. It is used to specify the options for the typescript compiler. It is a JSON file. And, it is created in the root of our project directory.
