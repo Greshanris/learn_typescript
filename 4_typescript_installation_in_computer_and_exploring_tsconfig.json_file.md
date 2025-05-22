@@ -40,3 +40,42 @@ tsc index.ts
 node index.js
 ```
 ![node_index.js](pictures/12_22may2025.png)
+- Since, typescript is just for writing code, in easy, efficient and readable way, at the end of the day, it transpiles to javascript code. It is particulary useful for Large projects, where we need ``Object Oriented Programming`` and ``Static Typing``.
+- For instance, ``classes`` was not in javascript at past. Right now, it is in javascript. But, previously, it was not. So, if we define a class in typescript, and even include ``access modifiers`` like ``private`` which is not in javascript, it will transpile the code to javascript code.
+- Let's change the ``index.ts`` file to:
+```typescript
+class Product{
+    private getProductList(){}
+}
+```
+- Now if we transpile the code to javascript using ``tsc index.ts``, we can see the following code in the ``index.js`` file:
+```javascript
+var Product = /** @class */ (function () {
+    function Product() {
+    }
+    Product.prototype.getProductList = function () { };
+    return Product;
+}());
+```
+- Now, again back to the same code in ``index.ts`` file:
+```typescript
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+console.log(
+    add(1, 2)
+);
+```
+- And, when we transpile the code to javascript, and use the command ``node index.js``, we can see the output:
+![node_index.js(2)](pictures/13_22may2025.png)
+- So, one thing we need to note is that, on which version of node, we are tranpiling the code to?
+- So, By default, typescript transpiles the code to ES3 version of javascript. So, how to find that out?
+```powershell
+tsc --help
+```
+- It will show us the help page of typescript. And, various flags and what they do. There is a flag called ``--target``. It is used to specify the version of javascript we want to transpile our code to.
+![target](pictures/14_22may2025.png)
+- From here, we see that, now, the default version of updated typescript which i am using is ES5. So, whatever code we write in typescript, it will transpiled to ES5 version of JavaScript.
+- The same flag is used to specify the version of javascript we want to transpile our code to. 
+![es5version](pictures/15_22may2025.png)
