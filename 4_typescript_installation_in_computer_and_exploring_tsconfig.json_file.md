@@ -77,5 +77,78 @@ tsc --help
 - It will show us the help page of typescript. And, various flags and what they do. There is a flag called ``--target``. It is used to specify the version of javascript we want to transpile our code to.
 ![target](pictures/14_22may2025.png)
 - From here, we see that, now, the default version of updated typescript which i am using is ES5. So, whatever code we write in typescript, it will transpiled to ES5 version of JavaScript.
-- The same flag is used to specify the version of javascript we want to transpile our code to. 
 ![es5version](pictures/15_22may2025.png)
+- From above screenshot, we can know that arrow function is not in ES5 version of javascript. so, if we write an arrow function in typescript and transpile it to ES5 version of javascript:
+```typescript
+const add = (a: number, b: number) => {
+    return a + b;
+};
+```
+- The transpiled code will be:
+```javascript
+var add = function (a, b) {
+    return a + b;
+};
+```
+- To change the version of javascript we want to transpile our code to, we can use the ``--target`` flag:
+```powershell
+# it is changing version to ES6
+tsc index.ts --target es2015
+```
+- Now, if we see ``index.js`` file, we can see the following code:
+```javascript
+const add = (a, b) => {
+    return a + b;
+};
+```
+- Now, comes the part where we need to specify where in the folder we want to save the transpiled code. By default, it saves in the same folder as the typescript file. But, we can change that using the ``--outDir`` flag:
+```powershell
+tsc index.ts --target es2015 --outDir dist
+```
+- Now, we see the folder called ``dist`` created in our project directory. And, inside the folder, we can see ``index.js`` file.
+
+#### Exploring tsconfig.json file
+- Now, repeteadly typing the command, setting flags, setting targets, setting outDir, is not a good practice. It is also time consuming. 
+- For that part is what ``tsconfig.json`` file is for.
+- It is a configuration file for typescript. It is used to specify the options for the typescript compiler. It is a JSON file. And, it is created in the root of our project directory.
+
+- Now, lets's create a new file called ``tsconfig.json`` in our project directory. And, the same thing we mentioned above about setting target, and outDir, we can do that in the ``tsconfig.json`` file:
+```json
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "outDir": "dist"
+    }
+}
+```
+- Now, save the file. And, run the command only without any flags:
+```powershell
+tsc
+```
+- Now, the transpile code will be found in the ``dist`` folder. And, the version of javascript will be ES2015.
+- Now, we know the reason, why ``tsconfig.json`` file is called configuration file. Because, it is used to configure the typescript compiler. And, we can set various options in the file.
+
+- Now, if we put the following code to the ``index.ts`` file:
+```typescript
+let a = "10";
+a = true; // this is error, right? 
+```
+- The code should not have been tranpiled to javascript code. But, if we transpile the code:
+```powershell
+tsc
+```
+- We see the error in the terminal like this:
+![tsc_transpiling_code](pictures/16_22may2025.png)
+- But, the code is transpiled to javascript code.
+- So, to prevent that, we can set the ``noEmitOnError`` flag to true in the ``tsconfig.json`` file:
+```json
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "outDir": "dist",
+        "noEmitOnError": true
+    }
+}
+```
+- Now, if we try to transpile the code, we will see the error in the terminal, but the code will not be transpiled to javascript code.
+
