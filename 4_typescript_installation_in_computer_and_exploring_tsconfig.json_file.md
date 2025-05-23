@@ -152,3 +152,59 @@ tsc
 ```
 - Now, if we try to transpile the code, we will see the error in the terminal, but the code will not be transpiled to javascript code.
 
+## Day 10 - Friday, 23rd May 2025
+### Exploring tsconfig.json file (contd...)
+- Suppose, we want to set typescript file to be only in ``src`` folder. And, Outside of it, we don't want to see any typescript file. Then, we can set the ``rootDir`` flag in the ``tsconfig.json`` file:
+```json
+{
+    "compileOptions":{
+        "target": "ES2015",
+        "outDir": "dist",
+        "noEmitOnError": true,
+        "rootDir": "./src"
+    }
+}
+```
+- Then, we created a folder called ``src`` in our project directory. And, moved the ``index.ts`` file to the ``src`` folder.
+- Now, if we transpile the code ``index.ts`` file:
+```powershell
+tsc
+```
+- It will search for the ``index.ts`` file in the ``src`` folder. And, if it is not found, it will show an error message in the terminal. And, if it is found, it will transpile the code to javascript code and save it in the ``dist`` folder.
+- And, if we create another ``index2.ts`` file outside the ``src`` folder, and try to transpile it, it will show an error message in the terminal. It will transpile the code to javascript code, but since, we defined the ``noEmitOnError`` flag to true, it will not be transpiled to javascript code.
+
+#### Suppose we do not need comment that we wrote in the typescript file.
+- We always write comments in our code to make it more readable and understandable. Although, during development, we need the comments. But when we transpile the code to javascript code, we do not need the comments.
+- So, to remove the comments from the transpiled code which we wrote in the typescript file, we can set the ``removeComments`` flag to true in the ``tsconfig.json`` file:
+```json
+{
+    "compileOptions":{
+        "target": "ES2015",
+        "outDir": "dist",
+        "noEmitOnError": true,
+        "rootDir": "./src",
+        "removeComments": true
+    }
+}
+```
+- Now, if we write a comment in the ``index.ts`` file and transpile the code to javascript code, we will not see the comment in the transpiled code.
+
+- Upto this point, we are manually creating the ``tsconfig.json`` file, and setting the flags in the file. But, there is a command to create the ``tsconfig.json`` file automatically. And, it will set the default flags in the file which we can change later if we want to.
+- But, first lets delete the ``tsconfig.json`` file we created manually. And, run the following command in the terminal:
+```powershell
+tsc --init
+```
+![tsc_init](pictures/17_23may2025.png)
+- Now, if we open the ``tsconfig.json`` file, we see many flags in the file. Many are commented. And, some are not even discussed yet. Let's first uncomment the flags we discussed above:
+```json
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "outDir": "dist",
+        "noEmitOnError": true,
+        "rootDir": "./src",
+        "removeComments": true
+    }
+}
+```
+- Now, let's discuss about the flag ``target`` which we discussed earlier. Here, we see that the default version of transpiled code will be ES2016, which is es7. But, we can even see options like ``ESNext``. It is the latest version of javascript to be. Meaning, it is not yet released. and, if we use ``ESNext`` in the ``target`` flag, the transpiled code will be compatible with the upcoming version of javascript as well.
