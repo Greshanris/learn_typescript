@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev --respawn --transpile-only server.ts"
+    "start": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Greshanris/learn_typescript/issues"
   },
-  "homepage": "https://github.com/Greshanris/learn_typescript#readme"
+  "homepage": "https://github.com/Greshanris/learn_typescript#readme",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
 }
